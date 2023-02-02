@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Homework11</title>
+  </head>
+  <body>
+    <h3 class="itemHeading">Featured Items</h3>
+    <p class="itemDescription">Shop on items based on what we featured</p>
+    <div class="productBox"></div>
+    <div class="cart">
+      <div class="productCart"></div>
+    </div>
+    <script src="json.js"></script>
+    <script>
+      const productBox = document.querySelector(".productBox");
+      const data = JSON.parse(dataProducts);
+      console.log(data);
+      data.forEach((element) => {
+        const productEl = document.createElement("div");
+        productEl.classList.add("product");
+
+        const imgDiv = document.createElement("div");
+        imgDiv.classList.add("img_div");
+
+        const productImg = document.createElement("img");
+        productImg.classList.add("product_img");
+        productImg.setAttribute("alt", element.id);
+        productImg.src = element.img;
+
+        const productContent = document.createElement("div");
+        productContent.classList.add("product_content");
+
+        const productName = document.createElement("h3");
+        productName.classList.add("product_name");
+        productName.textContent = element.name;
+
+        const productText = document.createElement("p");
+        productText.classList.add("product_text");
+        productText.textContent = element.description;
+
+        const productPrice = document.createElement("p");
+        productPrice.classList.add("product_prise");
+        productPrice.textContent = element.price;
+
+        const product = document.querySelector(".productCart");
+        imgDiv.appendChild(productImg);
+        productContent.appendChild(productName);
+        productContent.appendChild(productText);
+        productContent.appendChild(productPrice);
+        productEl.appendChild(imgDiv);
+        productEl.appendChild(productContent);
+        productBox.appendChild(productEl);
+      });
+    </script>
+  </body>
+</html>
